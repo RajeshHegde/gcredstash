@@ -1,8 +1,8 @@
 import argparse
 
 from config import Config
-from kms import GoogleKMS
-from keystore import KeyStore
+from gcredstash.keystore import KeyStore
+from gcredstash.kms import GoogleKMS
 
 __version__ = '1.0.0'
 

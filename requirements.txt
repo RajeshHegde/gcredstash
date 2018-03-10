@@ -1,4 +1,4 @@
-google-api-python-client
-google-cloud-datastore
-google-auth-httplib2
-python-dotenv
+google-api-python-client>=1.6.5
+google-cloud-datastore>=1.6.0
+google-auth-httplib2>=0.0.3
+python-dotenv>=0.8.2
