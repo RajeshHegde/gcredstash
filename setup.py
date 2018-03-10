@@ -10,7 +10,8 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
     ],
-    scripts=['google-gcredstash'],
+
+    packages=['gcredstash'],
     install_requires=[
         'google-api-python-client>=1.6.5',
         'google-cloud-datastore>=1.6.0',
