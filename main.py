@@ -1,6 +1,6 @@
 from __future__ import print_function
-from __future__ import print_function
 import argparse
+import sys
 
 import googleapiclient.discovery
 
@@ -10,22 +10,27 @@ from gcredstash.kms import GoogleKMS
 
 __version__ = '1.0.0'
 
-parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(dest='command')
-create_key_ring_parser = subparsers.add_parser('create-keyring')
+parser = argparse.ArgumentParser(description='A Credential Management Tool using Google Cloud KMS and Datastore')
+subparsers = parser.add_subparsers(dest='command',
+                                   help='Try commands like "{name} get -h" to get sub command\'s options'.format(
+                                       name=sys.argv[0])
+                                   )
+create_key_ring_parser = subparsers.add_parser('create-keyring',
+                                               help="Creates a KeyRing in the given location (e.g. global)")
 create_key_ring_parser.add_argument('new_keyring_id', type=str, help='Unique id for new KeyRing creation in location')
 
-create_key_parser = subparsers.add_parser('create-key')
+create_key_parser = subparsers.add_parser('create-key',
+                                          help="Creates a CryptoKey within a KeyRing in the given location")
 create_key_parser.add_argument('new_key_id', type=str, help='Unique id for new key creation in the KeyRing')
 
-get_parser = subparsers.add_parser('get')
+get_parser = subparsers.add_parser('get', help="Get the cipher from KeyStore and decrypted the credential")
 get_parser.add_argument('name', type=str, help='The name of credential')
 
-put_parser = subparsers.add_parser('put')
+put_parser = subparsers.add_parser('put', help="Encrypt the credential and put the cipher on KeyStore")
 put_parser.add_argument('name', type=str, help='The name of credential')
 put_parser.add_argument('plaintext', type=str, help='Text to be encrypted')
 
-get_all_parser = subparsers.add_parser('get-all')
+get_all_parser = subparsers.add_parser('get-all', help="Get the cipher from KeyStore and decrypted all the credentials")
 list_parser = subparsers.add_parser('list')
 
 parser.add_argument(
@@ -44,7 +49,6 @@ parser.add_argument(
 
 def main():
     args = parser.parse_args()
-    print(args)
     key_store = KeyStore(args.project_id)
     kms_client = googleapiclient.discovery.build('cloudkms', 'v1')
     kms = GoogleKMS(kms_client, args.project_id, args.location_id, args.key_ring_id, key_store)
