@@ -172,6 +172,6 @@ class GoogleKMS(__builtin__.object)
 ```
 
 ## Credits
-I have took inspirations from following open source projects while writing this
+Following open source projects are inspiration to this,
 * https://github.com/fugue/credstash
 * https://github.com/tly1980/gcreds
