@@ -141,11 +141,11 @@ class GoogleKMS(object):
     def create_key_ring(client, project_id, location_id, key_ring_id):
         """
         Creates a KeyRing in the given location (e.g. global)
-        :param client:
-        :param project_id:
-        :param location_id:
-        :param key_ring_id:
-        :return:
+        :param client: Google Cloud KMS client
+        :param project_id: GCP Project id
+        :param location_id: KeyRing location id
+        :param key_ring_id: New unique key ring name
+        :return: KeyRing creation response object
         """
         try:
             key_rings = client.projects().locations().keyRings()
@@ -163,12 +163,12 @@ class GoogleKMS(object):
     def create_key(client, project_id, location_id, key_ring_id, key_id):
         """
         Creates a CryptoKey within a KeyRing in the given location
-        :param client:
-        :param project_id:
-        :param location_id:
-        :param key_ring_id:
-        :param key_id:
-        :return:
+        :param client: Google Cloud KMS client
+        :param project_id: GCP Project id
+        :param location_id: KeyRing location id
+        :param key_ring_id: KeyRing id inside the location
+        :param key_id:  New unique key name
+        :return: Key creation response object
         """
 
         try:
