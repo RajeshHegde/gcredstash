@@ -5,8 +5,8 @@ import sys
 import googleapiclient.discovery
 
 from config import Config
-from gcredstash.keystore import KeyStore
-from gcredstash.kms import GoogleKMS
+from keystore import KeyStore
+from kms import GoogleKMS
 
 __version__ = '1.0.0'
 

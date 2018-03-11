@@ -57,6 +57,18 @@ optional arguments:
 
 ```
 
+#### Set default values in ENV
+You can set the default values for project_id, location etc in ENV and `gcredstash` is coded to read those variables,
+Here is the list of variables `gcredstash` recognises,
+
+```
+GCREDSTASH_GCP_PROJECT_ID
+GCREDSTASH_DEFAULT_KEY_RING_ID
+GCREDSTASH_DEFAULT_LOCATION_ID
+GCREDSTASH_DEFAULT_CRYPTO_KEY_ID
+GCREDSTASH_DEFAULT_DATASTORE_KIND
+```
+
 ### Python Package
 ```
 # import statements

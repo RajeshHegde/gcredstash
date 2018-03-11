@@ -10,17 +10,15 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
     ],
-
     packages=['gcredstash'],
     install_requires=[
         'google-api-python-client>=1.6.5',
         'google-cloud-datastore>=1.6.0',
         'google-auth-httplib2>=0.0.3',
-        'python-dotenv>=0.8.2',
     ],
     entry_points={
         'console_scripts': [
-            'gcredstash = main:main'
+            'gcredstash = gcredstash.main:main'
         ]
     }
 )
