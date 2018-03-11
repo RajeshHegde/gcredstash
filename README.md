@@ -3,11 +3,28 @@
 ## Installation
 1. `pip install gcredstash`
 
-## Introduction
+## Dependencies
+`gcredstash` uses following Google Cloud services
+* Google Cloud KMS
+* Google Datastore
 
+Make sure `gcredstash` have access to the above services.
+
+
+## Introduction
+Software systems often need access to some shared credential. For example, your web application needs access to a database password, or an API key for some third party service.
+
+Google CredStash is a very simple, easy to use credential management and distribution system that uses Google Cloud Key Management Service (KMS) for key storage, and Datastore for credential storage.
 
 ## Usage
 ### Command-line
+#### Create KeyRing
+`gcredstash --project-id=<gcp-project-id> --location-id=global create-keyring <your-first-keyring-name>`
+
+#### Create CryptoKey in KeyRing
+`gcredstash --project-id=<gcp-project-id> --location-id=global --keyring-id=<your-keyring-name>  create-key `<your-first-key-name>
+
+#### Command-line reference 
 ```
 usage: gcredstash [-h] [--project-id PROJECT_ID] [--location-id LOCATION_ID]
                [--keyring-id KEY_RING_ID] [--key-id KEY_ID]
@@ -61,7 +78,7 @@ kms.put(<crypto-key-id>, <datastore-kind>, <credential-name>, <credential-plaint
 
 ```
 
-## Reference
+#### Class References
 ```
 class KeyStore(__builtin__.object)
     Methods defined here:
@@ -141,3 +158,8 @@ class GoogleKMS(__builtin__.object)
         :param key_ring_id: New unique key ring name
         :return: KeyRing creation response object
 ```
+
+## Credits
+I have took inspirations from following open source projects while writing this
+* https://github.com/fugue/credstash
+* https://github.com/tly1980/gcreds
