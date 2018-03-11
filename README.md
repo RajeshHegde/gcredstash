@@ -41,4 +41,27 @@ optional arguments:
 ```
 
 ### Python Package
+```
+# import statements
+from gcredstash import GoogleKMS
+from gcredstash import KeyStore
 
+import googleapiclient.discovery
+
+
+# create keystore instance
+key_store = KeyStore()
+
+
+# create google kms api client 
+kms_client = googleapiclient.discovery.build('cloudkms', 'v1')
+
+
+# create kms instance
+kms = GoogleKMS(kms_client, '<project-id>', '<location-id>', '<keyring-id>', key_store)
+ 
+
+# store credential
+kms.put(<crypto-key-id>, <datastore-kind>, <credential-name>, <credential-plaintext>)
+
+```
