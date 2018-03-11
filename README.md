@@ -61,7 +61,7 @@ kms.put(<crypto-key-id>, <datastore-kind>, <credential-name>, <credential-plaint
 
 ```
 
-### Reference
+## Reference
 ```
 class KeyStore(__builtin__.object)
     Methods defined here:
