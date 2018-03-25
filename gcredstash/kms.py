@@ -15,7 +15,7 @@ class GoogleKMS(object):
         self.key_ring_id = key_ring_id
         self.key_store = key_store
 
-    def __encrypt(self, key_id, plain_text):
+    def _encrypt(self, key_id, plain_text):
         """
         Encrypt text using the CryptoKey
         :param key_id: CryptKey id
@@ -24,9 +24,9 @@ class GoogleKMS(object):
         """
         try:
 
-            name = self.__get_key_uri(key_id)
+            name = self._get_key_uri(key_id)
 
-            crypto_keys = self.__get_crypto_keys()
+            crypto_keys = self._get_crypto_keys()
             request = crypto_keys.encrypt(
                 name=name,
                 body={'plaintext': base64.b64encode(plain_text.encode('utf8')).decode('utf8')}
@@ -37,7 +37,7 @@ class GoogleKMS(object):
         except Exception as e:
             logging.exception(e)
 
-    def __decrypt(self, key_id, cipher):
+    def _decrypt(self, key_id, cipher):
         """
         Decrypt the credential using cipher text
         :param key_id: CryptKey id
@@ -45,8 +45,8 @@ class GoogleKMS(object):
         :return: Decrypted text
         """
         try:
-            name = self.__get_key_uri(key_id)
-            crypto_keys = self.__get_crypto_keys()
+            name = self._get_key_uri(key_id)
+            crypto_keys = self._get_crypto_keys()
 
             request = crypto_keys.decrypt(
                 name=name,
@@ -58,14 +58,14 @@ class GoogleKMS(object):
         except Exception as e:
             logging.exception(e)
 
-    def __get_crypto_keys(self):
+    def _get_crypto_keys(self):
         """
         Get Google KMS CryptKeys in the KeyRing
         :return: CryptoKeys
         """
         return self.client.projects().locations().keyRings().cryptoKeys()
 
-    def __get_key_uri(self, key_id):
+    def _get_key_uri(self, key_id):
         """
         Get Google Cloud KMS resource id
         :param key_id: CryptKey id
@@ -92,7 +92,7 @@ class GoogleKMS(object):
             raise ValueError("name and value should be a string")
 
         cipher = self.key_store.get(kind, name)
-        return self.__decrypt(key_id, cipher)
+        return self._decrypt(key_id, cipher)
 
     def put(self, key_id, kind, name, value):
         """
@@ -107,7 +107,7 @@ class GoogleKMS(object):
         if not isinstance(name, basestring) or not isinstance(value, basestring):
             raise ValueError("name and value should be a string")
 
-        cipher = self.__encrypt(key_id, value)
+        cipher = self._encrypt(key_id, value)
         return self.key_store.put(kind, name, cipher)
 
     def put_all(self, key_id, kind, credentials):
