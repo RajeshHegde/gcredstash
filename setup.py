@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='gcredstash',
     author='Rajesh Hegde',
-    version='1.0.0',
+    version='1.0.1',
     description='A Credential Management Tool using Google Cloud KMS and Datastore',
     url='https://github.com/RajeshHegde/gcredstash',
     classifiers=[

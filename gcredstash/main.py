@@ -8,8 +8,6 @@ from config import Config
 from keystore import KeyStore
 from kms import GoogleKMS
 
-__version__ = '1.0.0'
-
 parser = argparse.ArgumentParser(description='A Credential Management Tool using Google Cloud KMS and Datastore')
 subparsers = parser.add_subparsers(dest='command',
                                    help='Try commands like "{name} get -h" to get sub command\'s options'.format(
