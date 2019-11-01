@@ -1,11 +1,17 @@
 from setuptools import setup
 
+def read_readme():
+    with open('README.md') as f:
+        return f.read()
+
 setup(
     name='gcredstash',
     author='Rajesh Hegde',
     author_email="rajesh.p.hegde@gmail.com",
-    version='1.0.1',
+    version='1.0.2',
     description='A Credential Management Tool using Google Cloud KMS and Datastore',
+    long_description=read_readme(),
+    long_description_content_type="text/markdown",
     url='https://github.com/RajeshHegde/gcredstash',
     classifiers=[
         'Intended Audience :: Developers',
