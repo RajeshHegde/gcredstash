@@ -53,7 +53,7 @@ class GoogleKMS(object):
                 body={'ciphertext': cipher})
             response = request.execute()
 
-            return base64.b64decode(response.get('plaintext').encode('utf8'))
+            return base64.b64decode(response.get('plaintext').encode('utf8')).decode("utf8")
 
         except Exception as e:
             logging.exception(e)
@@ -88,10 +88,12 @@ class GoogleKMS(object):
         :return: Decrypted text
         """
 
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise ValueError("name and value should be a string")
 
         cipher = self.key_store.get(kind, name)
+        if cipher:
+            cipher = cipher.decode("utf8")
         return self._decrypt(key_id, cipher)
 
     def put(self, key_id, kind, name, value):
@@ -104,7 +106,7 @@ class GoogleKMS(object):
         :return:
         """
 
-        if not isinstance(name, basestring) or not isinstance(value, basestring):
+        if not isinstance(name, str) or not isinstance(value, str):
             raise ValueError("name and value should be a string")
 
         cipher = self._encrypt(key_id, value)

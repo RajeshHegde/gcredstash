@@ -1,4 +1,4 @@
-# Google CredStash
+# gcredstash
 
 ## Installation
 1. `pip install gcredstash`
@@ -14,7 +14,7 @@ Make sure `gcredstash` have access to the above services.
 ## Introduction
 Software systems often need access to some shared credential. For example, your web application needs access to a database password, or an API key for some third party service.
 
-Google CredStash is a very simple, easy to use credential management and distribution system that uses Google Cloud Key Management Service (KMS) for key storage, and Datastore for credential storage.
+`gcredstash` is a very simple, easy to use credential management and distribution system that uses Google Cloud Key Management Service (KMS) for key storage, and Datastore for credential storage.
 
 ## Usage
 ### Command-line
@@ -172,6 +172,5 @@ class GoogleKMS(__builtin__.object)
 ```
 
 ## Credits
-Following open source projects are inspiration to this,
 * https://github.com/fugue/credstash
 * https://github.com/tly1980/gcreds
